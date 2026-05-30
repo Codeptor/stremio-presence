@@ -1,0 +1,13 @@
+{
+  "discordClientId": "YOUR_DISCORD_APP_ID",
+  "pollIntervalMs": 15000,
+  "staleSeconds": 150,
+  "pausedMaxSeconds": 180,
+  "posterSize": "medium",
+  "smallImageUrl": "https://www.stremio.com/website/stremio-purple-small.png",
+  "showImdbButton": true,
+  "showStremioButton": true,
+  "showQuality": true,
+  "showBrowsing": true,
+  "showTray": true
+}

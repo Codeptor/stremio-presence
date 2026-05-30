@@ -1,0 +1,10 @@
+node_modules/
+auth.json
+config.json
+*.log
+_tmp/
+
+# OS cruft
+Thumbs.db
+Desktop.ini
+.DS_Store

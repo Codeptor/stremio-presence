@@ -70,6 +70,9 @@ several freshest items so playback survives browsing another title.
   there is no "frozen timer" payload. So the paused card shows the elapsed time (no progress bar) + a
   pause badge; the timer can't be frozen (Discord limitation, not a data one). `clearActivity()`+`setActivity()`
   to swap states makes the card vanish (presence throttle) — never do it; one SET_ACTIVITY per transition.
+- **Member-list status line** (next to your name) shows the app name by default; `status_display_type: 2` in
+  the raw SET_ACTIVITY makes it show `details` ("Stremio - <title>"). The card's bold header is always the
+  Discord application name (IPC ignores `name`) — rename the app in the Developer Portal to change it.
 - **External images**: put the raw `https` URL in `large_image`/`small_image` (Discord auto-proxies); the
   `large_url`/`small_url` fields are ignored over IPC. Poster from `images.metahub.space` (redirect is fine).
 - **authKey (cloud fallback)**: in Stremio 5's WebView2 localStorage (`profile` → `auth.key`); see

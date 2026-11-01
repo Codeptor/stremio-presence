@@ -131,6 +131,12 @@ function titleButtons(type, imdbId) {
   return buttons.length ? buttons : null;
 }
 
+// The card's bold header is always the Discord application name (IPC ignores `name`), so the
+// "Stremio - <title>" heading has to live in `details`.
+function headline(title) {
+  return `Stremio - ${title}`;
+}
+
 // Build a playing/paused/buffering view from a position (seconds) + metadata.
 function playbackView({ resolved, type, timeSec, durSec, nowMs, paused, buffering, source, quality }) {
   const startSec = Math.floor(nowMs / 1000) - timeSec;
@@ -151,7 +157,7 @@ function playbackView({ resolved, type, timeSec, durSec, nowMs, paused, bufferin
 
   const kind = buffering ? "buffering" : paused ? "paused" : "playing";
   return {
-    details: resolved.title,
+    details: headline(resolved.title),
     state: stateLine,
     largeUrl: resolved.posterUrl,
     largeText: resolved.title,
@@ -174,7 +180,7 @@ async function viewFromCdp(live, nowMs) {
       // In the player but no playhead yet (initial load / buffering before the first frame). Show a
       // loading card instead of clearing the presence.
       return {
-        details: resolved.title,
+        details: headline(resolved.title),
         state: "Loading…",
         largeUrl: resolved.posterUrl,
         largeText: resolved.title,
@@ -221,7 +227,7 @@ async function viewFromCdp(live, nowMs) {
     const resolved = await resolveSafe(b.type, b.imdbId, b.videoId || b.imdbId);
     if (resolved.title && resolved.title !== b.imdbId) {
       return {
-        details: resolved.title,
+        details: headline(resolved.title),
         state: "Browsing on Stremio",
         largeUrl: resolved.posterUrl || config.smallImageUrl || null,
         largeText: resolved.title,

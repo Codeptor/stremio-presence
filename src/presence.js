@@ -130,7 +130,9 @@ export function createPresence({ clientId }) {
     }
     if (view.smallText) assets.small_text = view.smallText;
 
-    const payload = { type: 3, instance: false };
+    // status_display_type 2 = the member-list line next to your name shows `details` instead of the
+    // application name (0 = name, 1 = state).
+    const payload = { type: 3, instance: false, status_display_type: 2 };
     if (view.details) payload.details = view.details;
     if (view.state) payload.state = view.state;
     if (Object.keys(assets).length) payload.assets = assets;
